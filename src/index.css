@@ -1,0 +1,338 @@
+/* Demon Slayer Theme CSS Variables */
+:root {
+  --charcoal: #0a0a0c;
+  --charcoal-light: #151518;
+  --charcoal-lighter: #202025;
+  
+  --crimson: #a01015;
+  --crimson-light: #d62027;
+  --crimson-dark: #630508;
+  
+  --burgundy: #4a0d10;
+  
+  --gold: #d4af37;
+  --gold-light: #f3e5ab;
+  --gold-dark: #aa8529;
+  
+  --paper: #f4f1ea;
+  --white: #ffffff;
+  --gray: #8c8c8c;
+  
+  --glass-bg: rgba(20, 20, 20, 0.6);
+  --glass-border: rgba(214, 32, 39, 0.2);
+  --glass-border-hover: rgba(214, 32, 39, 0.6);
+
+  /* Spacing System (8px scale) */
+  --sp-1: 8px;
+  --sp-2: 16px;
+  --sp-3: 24px;
+  --sp-4: 32px;
+  --sp-5: 40px;
+  --sp-6: 48px;
+  --sp-8: 64px;
+  --sp-10: 80px;
+  --sp-12: 96px;
+  --sp-16: 128px;
+
+  --max-width: 1200px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  cursor: none; /* Custom cursor */
+}
+
+body {
+  background-color: var(--charcoal);
+  color: var(--paper);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+  background-image: radial-gradient(circle at 50% 0%, rgba(74, 13, 16, 0.1) 0%, transparent 70%);
+}
+
+/* Custom Cursor Classes */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  background: var(--crimson-light);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s, background 0.3s;
+  box-shadow: 0 0 10px var(--crimson);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--charcoal);
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  font-weight: 700;
+  overflow: hidden;
+}
+
+.custom-cursor.hovering {
+  width: 40px;
+  height: 40px;
+  background: rgba(214, 32, 39, 0.2);
+  border: 1px solid var(--crimson-light);
+  box-shadow: 0 0 15px rgba(214, 32, 39, 0.4);
+}
+
+.custom-cursor.viewing {
+  width: 60px;
+  height: 60px;
+  background: var(--paper);
+  box-shadow: 0 0 20px rgba(244, 241, 234, 0.6);
+}
+
+@media (max-width: 768px) {
+  html { cursor: auto; }
+  .custom-cursor { display: none; }
+}
+
+/* Typography Hierarchy */
+h1, h2, h3, h4, h5, h6, .brand-font {
+  font-family: 'Cinzel', serif;
+  line-height: 1.2;
+}
+h1 { font-size: clamp(40px, 6vw, 80px); font-weight: 800; letter-spacing: 2px; }
+h2 { font-size: clamp(32px, 5vw, 56px); font-weight: 700; margin-bottom: var(--sp-6); letter-spacing: 2px; }
+h3 { font-size: clamp(20px, 2vw, 28px); font-weight: 700; margin-bottom: var(--sp-2); letter-spacing: 1px; }
+p { font-size: 16px; color: var(--gray); margin-bottom: var(--sp-3); }
+.small-text { font-size: 13px; letter-spacing: 2px; color: var(--gray); text-transform: uppercase; }
+
+a { text-decoration: none; color: inherit; cursor: none; }
+ul { list-style: none; }
+button { cursor: none; }
+
+/* Global Layout Constraints */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--sp-3);
+}
+section {
+  padding: var(--sp-16) 0;
+  position: relative;
+}
+
+/* Katana / Demon Slayer Accents */
+.katana-divider {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), var(--white), var(--gold), transparent);
+  box-shadow: 0 0 8px var(--gold-dark);
+  margin: var(--sp-8) 0;
+  position: relative;
+}
+.katana-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background: var(--crimson-light);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--crimson);
+}
+
+/* Glass Card - Japanese Paper Feel */
+.glass-card {
+  background: var(--charcoal-light);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px; /* Sharper edges */
+  padding: var(--sp-6);
+  transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url('https://www.transparenttextures.com/patterns/rice-paper-2.png');
+  opacity: 0.05;
+  pointer-events: none;
+}
+.glass-card:hover {
+  border-color: var(--crimson-light);
+  box-shadow: 0 10px 30px rgba(160, 16, 21, 0.2);
+  transform: translateY(-5px);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-3) var(--sp-6);
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 2px;
+  transition: all 0.4s ease;
+  cursor: none;
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: 0.5s;
+}
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn-primary {
+  background: var(--crimson);
+  color: var(--paper);
+  border: 1px solid var(--crimson-light);
+  box-shadow: 0 0 15px rgba(214, 32, 39, 0.3);
+}
+.btn-primary:hover {
+  background: var(--crimson-light);
+  box-shadow: 0 0 25px rgba(214, 32, 39, 0.6);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--paper);
+  border: 1px solid var(--gray);
+}
+.btn-outline:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.section-title {
+  color: var(--crimson-light);
+  font-size: 16px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  margin-bottom: var(--sp-8);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.section-title::before {
+  content: '';
+  width: 40px;
+  height: 2px;
+  background: var(--crimson-light);
+}
+
+/* Slash Transition */
+.slash-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.slash-line {
+  position: absolute;
+  width: 200vw;
+  height: 2px;
+  background: var(--white);
+  box-shadow: 0 0 20px var(--crimson-light), 0 0 40px var(--crimson);
+  transform-origin: center;
+}
+.slash-bg {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: var(--charcoal);
+}
+
+/* Breathing Animation */
+@keyframes breathing {
+  0% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.05); opacity: 0.6; }
+  100% { transform: scale(1); opacity: 0.3; }
+}
+.breathing-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: radial-gradient(circle at center, rgba(160, 16, 21, 0.1) 0%, transparent 60%);
+  animation: breathing 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Pure Lightning Cinematic Animations */
+
+@keyframes particleSuction {
+  0% { transform: scale(3) rotate(0deg); opacity: 0; filter: blur(10px); }
+  50% { opacity: 1; filter: blur(2px); }
+  100% { transform: scale(0) rotate(180deg); opacity: 0; filter: blur(0px); }
+}
+
+@keyframes lightningStrikeVertical {
+  0% { transform: scaleY(0); opacity: 1; filter: brightness(5) blur(2px); background: #fff; box-shadow: 0 0 100px #00f, 0 0 200px #fff; }
+  5% { transform: scaleY(1); opacity: 1; }
+  10% { opacity: 0; }
+  15% { opacity: 1; filter: brightness(10); }
+  25% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes lightningStrikeHorizontal {
+  0% { transform: scaleX(0); opacity: 1; filter: brightness(5) blur(2px); background: #fff; box-shadow: 0 0 100px #00f, 0 0 200px #fff; }
+  5% { transform: scaleX(1); opacity: 1; }
+  10% { opacity: 0; }
+  15% { opacity: 1; filter: brightness(10); }
+  25% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+@keyframes electricArcFlow {
+  0% { stroke-dashoffset: 1000; opacity: 1; filter: drop-shadow(0 0 10px #00f); }
+  50% { opacity: 1; filter: drop-shadow(0 0 20px #87cefa) brightness(2); }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
+@keyframes thunderShockwave {
+  0% { transform: scale(0); opacity: 1; border: 20px solid #fff; box-shadow: 0 0 50px #87cefa, inset 0 0 50px #87cefa; }
+  50% { opacity: 1; border: 5px solid #87cefa; }
+  100% { transform: scale(5); opacity: 0; border: 1px solid #000; box-shadow: none; }
+}
+
+@keyframes electricTextReveal {
+  0% { opacity: 0; text-shadow: 0 0 50px #fff; filter: brightness(5) blur(5px); }
+  30% { opacity: 1; text-shadow: 0 0 20px #87cefa; filter: brightness(2) blur(1px); }
+  100% { opacity: 1; text-shadow: none; filter: brightness(1) blur(0); }
+}
+
+@keyframes buttonShatter {
+  0% { transform: scale(1); opacity: 1; filter: brightness(1); }
+  20% { transform: scale(1.2); opacity: 1; filter: brightness(3); }
+  100% { transform: scale(0); opacity: 0; filter: blur(20px); letter-spacing: 20px; }
+}
+
+@keyframes subtleAtmospherePulse {
+  0%, 100% { opacity: 0.8; filter: brightness(0.8); }
+  50% { opacity: 1; filter: brightness(1.2); }
+}
