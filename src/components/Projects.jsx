@@ -7,17 +7,14 @@ const Projects = ({ onSlashTransition }) => {
   return (
     <motion.section id="projects" initial="hidden" whileInView="visible" variants={sectionFlash} viewport={{ once: true, margin: "-100px" }}>
       <div className="container">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px' }}>
-          <h2 className="section-title" style={{ marginBottom: 0 }}>MISSION ARCHIVE</h2>
-          <span className="hot-badge"><span>🔥</span> FEATURED MISSIONS</span>
-        </div>
+        <h2 className="section-title">MISSION ARCHIVE</h2>
         
         <div style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
           {portfolioData.projects.map((project, index) => (
             <motion.div 
               key={project.id}
               variants={thunderReveal}
-              className={`project-card interactive glass-card ${index === 0 ? 'hot-effect' : ''}`}
+              className="project-card interactive glass-card"
               style={{ cursor: 'none' }}
             >
               <div className="project-card-inner" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px', alignItems: 'center' }}>
@@ -34,10 +31,9 @@ const Projects = ({ onSlashTransition }) => {
                     <span style={{ color: 'var(--crimson-light)', fontFamily: 'Cinzel, serif', fontSize: '24px', fontWeight: 800 }}>{project.num}</span>
                     <span style={{ height: '1px', width: '40px', background: 'var(--gold-dark)' }} />
                     <span style={{ color: 'var(--gray)', fontSize: '12px', letterSpacing: '2px', textTransform: 'uppercase' }}>MISSION</span>
-                    {index === 0 && <span className="hot-badge" style={{ marginLeft: 'auto' }}><span>🔥</span> HOT</span>}
                   </div>
 
-                  <h3 style={{ fontSize: '32px', color: 'var(--white)', marginBottom: '16px' }} className={index === 0 ? 'hot-text' : ''}>{project.title}</h3>
+                  <h3 style={{ fontSize: '32px', color: 'var(--white)', marginBottom: '16px' }}>{project.title}</h3>
                   
                   <p style={{ color: 'var(--gray)', marginBottom: '24px' }}>
                     <strong>Role:</strong> {project.role} <br/>

@@ -62,12 +62,12 @@ const Hero = ({ onSlashTransition }) => {
         {sequencePhase === 0 && (
           <button 
             onClick={handleStart}
-            className="btn hot-glow-btn interactive"
+            className="btn btn-primary interactive"
             style={{ 
               padding: '16px 40px', fontSize: '18px', letterSpacing: '4px', zIndex: 10
             }}
           >
-            🔥 BEGIN JOURNEY
+            BEGIN JOURNEY
           </button>
         )}
         {sequencePhase === 1 && (
@@ -131,7 +131,7 @@ const Hero = ({ onSlashTransition }) => {
 
           {/* Phase 8: Text Formation 2 */}
           {sequencePhase === 8 && (
-            <motion.div key="text2" style={{ position: 'absolute', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <motion.div key="text2" style={{ position: 'absolute', width: '100%', height: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <h1 style={{ color: 'var(--white)', fontFamily: 'Inter, sans-serif', fontSize: '80px', fontWeight: 700, letterSpacing: '2px', animation: 'electricTextReveal 1.2s forwards' }}>
                 Built with passion.
               </h1>
@@ -167,10 +167,6 @@ const Hero = ({ onSlashTransition }) => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, ease: 'easeOut', delay: 0.2 }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
-            <span className="hot-badge"><span>🔥</span> SUN BREATHING MODE</span>
-          </div>
-
           <motion.div 
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}
             style={{ color: 'var(--gray)', letterSpacing: '6px', fontSize: '14px', marginBottom: '24px', textTransform: 'uppercase', fontFamily: 'Inter, sans-serif' }}
@@ -180,8 +176,7 @@ const Hero = ({ onSlashTransition }) => {
           
           <motion.h1 
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }}
-            className="hot-text"
-            style={{ textTransform: 'uppercase', marginBottom: '8px', fontSize: '64px' }}
+            style={{ color: 'var(--white)', textTransform: 'uppercase', marginBottom: '8px', fontSize: '64px' }}
           >
             {name}
           </motion.h1>
@@ -206,8 +201,8 @@ const Hero = ({ onSlashTransition }) => {
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 2.2 }}
             style={{ display: 'flex', gap: '24px', flexWrap: 'wrap', marginTop: '48px' }}
           >
-            <a href="#projects" onClick={handleScrollToProjects} className="btn hot-glow-btn interactive">
-              🔥 EXPLORE MY WORK
+            <a href="#projects" onClick={handleScrollToProjects} className="btn btn-primary interactive">
+              EXPLORE MY WORK
             </a>
             <a href={portfolioData.googleDriveLinks.resumePdf} target="_blank" rel="noreferrer" className="btn btn-outline interactive">
               VIEW RESUME
