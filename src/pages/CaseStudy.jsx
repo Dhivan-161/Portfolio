@@ -42,7 +42,10 @@ const CaseStudy = () => {
           <button onClick={() => navigate('/')} className="interactive" style={{ background: 'none', border: 'none', color: 'var(--gray)', fontSize: '14px', letterSpacing: '2px', display: 'flex', alignItems: 'center', gap: '8px' }}>
             ← BACK TO ARCHIVE
           </button>
-          <span style={{ fontFamily: 'Cinzel, serif', fontSize: '20px', color: 'var(--white)', fontWeight: 800 }}>[DS]</span>
+          <a href="/" onClick={(e) => { e.preventDefault(); navigate('/'); }} className="interactive" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <img src="/profile.jpg" alt="Dhivan S" style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover', border: '1px solid var(--gold)' }} />
+            <span style={{ fontFamily: 'Cinzel, serif', fontSize: '18px', color: 'var(--white)', fontWeight: 800 }}>DHIVAN</span>
+          </a>
         </div>
       </nav>
 

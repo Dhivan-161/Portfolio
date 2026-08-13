@@ -1,21 +1,35 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { portfolioData } from '../data/portfolioData';
 import { thunderReveal, sectionFlash } from '../utils/animations';
 
 const Projects = ({ onSlashTransition }) => {
+  const navigate = useNavigate();
+
+  const handleProjectClick = (projectId) => {
+    if (onSlashTransition) {
+      onSlashTransition(() => {
+        navigate(`/project/${projectId}`);
+      });
+    } else {
+      navigate(`/project/${projectId}`);
+    }
+  };
+
   return (
     <motion.section id="projects" initial="hidden" whileInView="visible" variants={sectionFlash} viewport={{ once: true, margin: "-100px" }}>
       <div className="container">
         <h2 className="section-title">MISSION ARCHIVE</h2>
         
         <div style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
-          {portfolioData.projects.map((project, index) => (
+          {portfolioData.projects.map((project) => (
             <motion.div 
               key={project.id}
               variants={thunderReveal}
               className="project-card interactive glass-card"
-              style={{ cursor: 'none' }}
+              onClick={() => handleProjectClick(project.id)}
+              style={{ cursor: 'pointer' }}
             >
               <div className="project-card-inner" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px', alignItems: 'center' }}>
                 
@@ -41,6 +55,10 @@ const Projects = ({ onSlashTransition }) => {
                   </p>
 
                   <p style={{ color: 'var(--paper)', marginBottom: '32px' }}>{project.description}</p>
+
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--crimson-light)', fontFamily: 'Cinzel, serif', fontWeight: 700, fontSize: '14px', letterSpacing: '2px' }}>
+                    VIEW CASE STUDY <span className="arrow">→</span>
+                  </div>
                 </div>
 
               </div>

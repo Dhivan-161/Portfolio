@@ -1,35 +1,30 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Check } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
+import { sectionFlash, thunderReveal } from '../utils/animations';
 
 const Certifications = () => {
   return (
-    <section id="certifications">
+    <motion.section id="certifications" initial="hidden" whileInView="visible" variants={sectionFlash} viewport={{ once: true, margin: "-100px" }}>
       <div className="container">
-        <motion.h2 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="section-title"
-        >
-          CERTIFICATIONS
-        </motion.h2>
+        <h2 className="section-title">CERTIFICATIONS</h2>
         
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '32px' }} className="cert-grid">
-          {portfolioData.certifications.map(cert => (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '32px' }}>
+          {portfolioData.certifications.map((cert, index) => (
             <motion.div 
               key={cert.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              variants={thunderReveal}
+              transition={{ delay: index * 0.1 }}
               className="glass-card"
+              style={{ borderLeft: '3px solid var(--gold)', padding: '24px' }}
             >
-              <h3 style={{ fontSize: '20px', marginBottom: '16px', color: 'var(--white)' }}>{cert.title}</h3>
+              <h3 style={{ fontSize: '20px', marginBottom: '16px', color: 'var(--white)', letterSpacing: '1px' }}>
+                📜 {cert.title}
+              </h3>
               <ul style={{ listStyle: 'none', padding: 0 }}>
                 {cert.topics.map(topic => (
-                  <li key={topic} style={{ color: 'var(--gray)', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '15px' }}>
-                    <Check size={16} color="var(--cyan)" />
+                  <li key={topic} style={{ color: 'var(--paper)', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '12px', fontSize: '15px' }}>
+                    <span style={{ color: 'var(--gold)', fontWeight: 800 }}>✓</span>
                     {topic}
                   </li>
                 ))}
@@ -38,12 +33,7 @@ const Certifications = () => {
           ))}
         </div>
       </div>
-      <style>{`
-        @media (max-width: 768px) {
-          .cert-grid { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
-    </section>
+    </motion.section>
   );
 };
 
