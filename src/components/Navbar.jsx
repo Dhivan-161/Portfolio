@@ -25,12 +25,28 @@ const Navbar = () => {
     <nav style={navStyle}>
       <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         
-        {/* Monogram Logo */}
+        {/* Profile Image Logo */}
         <a href="#home" className="interactive" style={{ 
-          fontFamily: 'Cinzel, serif', fontSize: '24px', fontWeight: 800, color: 'var(--white)',
-          border: '1px solid var(--gold-dark)', padding: '4px 8px', letterSpacing: '2px'
+          display: 'flex', alignItems: 'center', gap: '12px'
         }}>
-          [DS]
+          <img 
+            src="/profile.jpg" 
+            alt="Dhivan S" 
+            style={{ 
+              width: '42px', 
+              height: '42px', 
+              borderRadius: '50%', 
+              objectFit: 'cover', 
+              objectPosition: 'top center',
+              border: '2px solid var(--gold)',
+              boxShadow: '0 0 10px rgba(212, 175, 55, 0.4)',
+              transition: 'transform 0.3s ease, box-shadow 0.3s ease'
+            }} 
+            className="nav-profile-img"
+          />
+          <span style={{ fontFamily: 'Cinzel, serif', fontSize: '18px', fontWeight: 800, color: 'var(--white)', letterSpacing: '2px' }}>
+            DHIVAN
+          </span>
         </a>
 
         {/* Links */}
