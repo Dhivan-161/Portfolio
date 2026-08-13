@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
 
@@ -6,7 +6,7 @@ const Hero = ({ onSlashTransition }) => {
   const [started, setStarted] = useState(false);
   const [sequencePhase, setSequencePhase] = useState(0); 
   
-  const { name, roles, headline } = portfolioData.personalInfo;
+  const { name, roles } = portfolioData.personalInfo;
 
   const handleStart = () => {
     setStarted(true);
@@ -58,17 +58,16 @@ const Hero = ({ onSlashTransition }) => {
         {/* Deep Atmospheric Background */}
         <div style={{ position: 'absolute', width: '100%', height: '100%', backgroundImage: 'url(/thunder-bg.png)', backgroundSize: 'cover', opacity: 0.8, animation: 'subtleAtmospherePulse 4s infinite' }} />
 
-        {/* Phase 0: The Button (Shattering) */}
+        {/* Phase 0: The Button */}
         {sequencePhase === 0 && (
           <button 
             onClick={handleStart}
-            className="btn interactive"
+            className="btn hot-glow-btn interactive"
             style={{ 
-              background: 'transparent', color: 'var(--white)', border: '1px solid var(--crimson-light)',
               padding: '16px 40px', fontSize: '18px', letterSpacing: '4px', zIndex: 10
             }}
           >
-            BEGIN JOURNEY
+            🔥 BEGIN JOURNEY
           </button>
         )}
         {sequencePhase === 1 && (
@@ -158,7 +157,7 @@ const Hero = ({ onSlashTransition }) => {
   return (
     <section id="home" className="hero" style={{ minHeight: '100vh', position: 'relative', overflow: 'hidden', background: 'var(--charcoal)' }}>
       
-      {/* Background becomes the dissolved particles */}
+      {/* Background particles */}
       <div style={{ position: 'absolute', width: '100%', height: '100%', backgroundImage: 'url(/thunder-bg.png)', backgroundSize: 'cover', opacity: 0.3, mixBlendMode: 'screen' }} />
 
       <div className="container" style={{ position: 'relative', zIndex: 10, height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
@@ -168,6 +167,10 @@ const Hero = ({ onSlashTransition }) => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, ease: 'easeOut', delay: 0.2 }}
         >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
+            <span className="hot-badge"><span>🔥</span> SUN BREATHING MODE</span>
+          </div>
+
           <motion.div 
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}
             style={{ color: 'var(--gray)', letterSpacing: '6px', fontSize: '14px', marginBottom: '24px', textTransform: 'uppercase', fontFamily: 'Inter, sans-serif' }}
@@ -177,7 +180,8 @@ const Hero = ({ onSlashTransition }) => {
           
           <motion.h1 
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }}
-            style={{ color: 'var(--white)', textTransform: 'uppercase', marginBottom: '8px', fontSize: '64px' }}
+            className="hot-text"
+            style={{ textTransform: 'uppercase', marginBottom: '8px', fontSize: '64px' }}
           >
             {name}
           </motion.h1>
@@ -202,8 +206,8 @@ const Hero = ({ onSlashTransition }) => {
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 2.2 }}
             style={{ display: 'flex', gap: '24px', flexWrap: 'wrap', marginTop: '48px' }}
           >
-            <a href="#projects" onClick={handleScrollToProjects} className="btn btn-primary interactive">
-              EXPLORE MY WORK
+            <a href="#projects" onClick={handleScrollToProjects} className="btn hot-glow-btn interactive">
+              🔥 EXPLORE MY WORK
             </a>
             <a href={portfolioData.googleDriveLinks.resumePdf} target="_blank" rel="noreferrer" className="btn btn-outline interactive">
               VIEW RESUME
