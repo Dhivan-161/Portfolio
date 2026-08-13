@@ -42,7 +42,7 @@ function MainLayout() {
       <Routes>
         <Route path="/" element={
           <main>
-            <Navbar />
+            <Navbar onSlashTransition={handleSlashTransition} />
             <Hero onSlashTransition={handleSlashTransition} />
             <About />
             <Skills />

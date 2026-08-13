@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { portfolioData } from '../data/portfolioData';
 
-const Navbar = () => {
+const Navbar = ({ onSlashTransition }) => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -12,23 +11,39 @@ const Navbar = () => {
 
   const navStyle = {
     position: 'fixed', top: 0, left: 0, width: '100%', zIndex: 1000,
-    padding: scrolled ? '16px 0' : '24px 0',
+    padding: scrolled ? '14px 0' : '20px 0',
     background: scrolled ? 'var(--glass-bg)' : 'transparent',
     borderBottom: scrolled ? '1px solid var(--glass-border)' : '1px solid transparent',
-    backdropFilter: scrolled ? 'blur(10px)' : 'none',
+    backdropFilter: scrolled ? 'blur(12px)' : 'none',
     transition: 'all 0.4s ease'
   };
 
   const navLinks = ['Home', 'About', 'Skills', 'Projects', 'Experience', 'Contact'];
+
+  const handleNavClick = (e, link) => {
+    e.preventDefault();
+    const targetId = link.toLowerCase();
+    
+    if (onSlashTransition) {
+      onSlashTransition(() => {
+        document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
+      });
+    } else {
+      document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <nav style={navStyle}>
       <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         
         {/* Profile Image Logo */}
-        <a href="#home" className="interactive" style={{ 
-          display: 'flex', alignItems: 'center', gap: '12px'
-        }}>
+        <a 
+          href="#home" 
+          onClick={(e) => handleNavClick(e, 'Home')}
+          className="interactive" 
+          style={{ display: 'flex', alignItems: 'center', gap: '12px' }}
+        >
           <img 
             src="/profile.jpg" 
             alt="Dhivan S" 
@@ -55,6 +70,7 @@ const Navbar = () => {
             <a 
               key={link} 
               href={`#${link.toLowerCase()}`}
+              onClick={(e) => handleNavClick(e, link)}
               className="interactive nav-link"
               style={{ fontSize: '13px', textTransform: 'uppercase', letterSpacing: '2px', color: 'var(--gray)', transition: '0.3s' }}
             >
