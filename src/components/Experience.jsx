@@ -5,9 +5,9 @@ import { thunderReveal, sectionFlash } from '../utils/animations';
 
 const Experience = () => {
   return (
-    <motion.section id="mastery" initial="hidden" whileInView="visible" variants={sectionFlash} viewport={{ once: true, margin: "-100px" }} style={{ background: 'var(--charcoal-light)' }}>
+    <motion.section id="experience" initial="hidden" whileInView="visible" variants={sectionFlash} viewport={{ once: true, margin: "-100px" }} style={{ background: 'var(--charcoal-light)' }}>
       <div className="container">
-        <h2 className="section-title">MASTERY</h2>
+        <h2 className="section-title">EXPERIENCE</h2>
         
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '32px' }}>
           

@@ -19,7 +19,7 @@ const Navbar = () => {
     transition: 'all 0.4s ease'
   };
 
-  const navLinks = ['Home', 'About', 'Skills', 'Projects', 'Mastery', 'Contact'];
+  const navLinks = ['Home', 'About', 'Skills', 'Projects', 'Experience', 'Contact'];
 
   return (
     <nav style={navStyle}>
