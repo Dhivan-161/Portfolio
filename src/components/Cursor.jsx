@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 const Cursor = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [cursorState, setCursorState] = useState('normal'); // 'normal', 'hovering', 'viewing'
+  const [cursorState, setCursorState] = useState('normal'); // 'normal', 'hovering'
 
   useEffect(() => {
     // Only enable custom cursor on non-touch devices
@@ -13,10 +13,8 @@ const Cursor = () => {
     };
 
     const handleMouseOver = (e) => {
-      if (e.target.closest('button') || e.target.closest('a') || e.target.closest('.interactive')) {
+      if (e.target.closest('button') || e.target.closest('a') || e.target.closest('.interactive') || e.target.closest('.project-card')) {
         setCursorState('hovering');
-      } else if (e.target.closest('.project-card')) {
-        setCursorState('viewing');
       } else {
         setCursorState('normal');
       }
@@ -37,9 +35,7 @@ const Cursor = () => {
     <div 
       className={`custom-cursor ${cursorState}`}
       style={{ left: position.x, top: position.y }}
-    >
-      {cursorState === 'viewing' && 'VIEW'}
-    </div>
+    />
   );
 };
 
