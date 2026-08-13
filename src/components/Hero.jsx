@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
+import OnePieceCinematic from './OnePieceCinematic';
 
 const Hero = ({ onSlashTransition }) => {
   const [started, setStarted] = useState(false);
   const [sequencePhase, setSequencePhase] = useState(0); 
+  const [showCinematic, setShowCinematic] = useState(false);
   
   const { name, roles } = portfolioData.personalInfo;
 
@@ -60,16 +62,28 @@ const Hero = ({ onSlashTransition }) => {
 
         {/* Phase 0: The Button */}
         {sequencePhase === 0 && (
-          <button 
-            onClick={handleStart}
-            className="btn btn-primary interactive"
-            style={{ 
-              padding: '16px 40px', fontSize: '18px', letterSpacing: '4px', zIndex: 10
-            }}
-          >
-            BEGIN JOURNEY
-          </button>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'center', zIndex: 10 }}>
+            <button 
+              onClick={handleStart}
+              className="btn btn-primary interactive"
+              style={{ 
+                padding: '16px 40px', fontSize: '18px', letterSpacing: '4px'
+              }}
+            >
+              BEGIN JOURNEY
+            </button>
+            <button
+              onClick={() => setShowCinematic(true)}
+              className="btn btn-outline interactive"
+              style={{
+                borderColor: '#ff4500', color: '#ff4500', padding: '12px 28px', fontSize: '13px', letterSpacing: '2px'
+              }}
+            >
+              🎬 PLAY ONE PIECE MOVIE CINEMATIC
+            </button>
+          </div>
         )}
+
         {sequencePhase === 1 && (
           <div style={{ 
             color: 'var(--white)', border: '1px solid var(--crimson-light)',
@@ -79,6 +93,10 @@ const Hero = ({ onSlashTransition }) => {
             BEGIN JOURNEY
           </div>
         )}
+
+        <AnimatePresence>
+          {showCinematic && <OnePieceCinematic onClose={() => setShowCinematic(false)} />}
+        </AnimatePresence>
 
         <AnimatePresence mode="wait">
 
@@ -157,6 +175,10 @@ const Hero = ({ onSlashTransition }) => {
   return (
     <section id="home" className="hero" style={{ minHeight: '100vh', position: 'relative', overflow: 'hidden', background: 'var(--charcoal)' }}>
       
+      <AnimatePresence>
+        {showCinematic && <OnePieceCinematic onClose={() => setShowCinematic(false)} />}
+      </AnimatePresence>
+
       {/* Background particles */}
       <div style={{ position: 'absolute', width: '100%', height: '100%', backgroundImage: 'url(/thunder-bg.png)', backgroundSize: 'cover', opacity: 0.3, mixBlendMode: 'screen' }} />
 
@@ -204,6 +226,13 @@ const Hero = ({ onSlashTransition }) => {
             <a href="#projects" onClick={handleScrollToProjects} className="btn btn-primary interactive">
               EXPLORE MY WORK
             </a>
+            <button 
+              onClick={() => setShowCinematic(true)} 
+              className="btn btn-outline interactive"
+              style={{ borderColor: '#ff4500', color: '#ff8c00' }}
+            >
+              🎬 ONE PIECE MOVIE CINEMATIC
+            </button>
             <a href={portfolioData.googleDriveLinks.resumePdf} target="_blank" rel="noreferrer" className="btn btn-outline interactive">
               VIEW RESUME
             </a>
