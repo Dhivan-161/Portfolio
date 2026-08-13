@@ -1,22 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
 import { portfolioData } from '../data/portfolioData';
 import { thunderReveal, sectionFlash } from '../utils/animations';
 
-const Projects = ({ onSlashTransition }) => {
-  const navigate = useNavigate();
-
-  const handleProjectClick = (projectId) => {
-    if (onSlashTransition) {
-      onSlashTransition(() => {
-        navigate(`/project/${projectId}`);
-      });
-    } else {
-      navigate(`/project/${projectId}`);
-    }
-  };
-
+const Projects = () => {
   return (
     <motion.section id="projects" initial="hidden" whileInView="visible" variants={sectionFlash} viewport={{ once: true, margin: "-100px" }}>
       <div className="container">
@@ -28,8 +15,6 @@ const Projects = ({ onSlashTransition }) => {
               key={project.id}
               variants={thunderReveal}
               className="project-card interactive glass-card"
-              onClick={() => handleProjectClick(project.id)}
-              style={{ cursor: 'pointer' }}
             >
               <div className="project-card-inner" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px', alignItems: 'center' }}>
                 
@@ -54,11 +39,7 @@ const Projects = ({ onSlashTransition }) => {
                     <strong>Tools:</strong> {project.tool}
                   </p>
 
-                  <p style={{ color: 'var(--paper)', marginBottom: '32px' }}>{project.description}</p>
-
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--crimson-light)', fontFamily: 'Cinzel, serif', fontWeight: 700, fontSize: '14px', letterSpacing: '2px' }}>
-                    VIEW CASE STUDY <span className="arrow">→</span>
-                  </div>
+                  <p style={{ color: 'var(--paper)', marginBottom: '16px' }}>{project.description}</p>
                 </div>
 
               </div>
@@ -69,7 +50,6 @@ const Projects = ({ onSlashTransition }) => {
       <style>{`
         .project-card:hover .project-img { transform: scale(1.05); }
         .project-card:hover .project-overlay { background: rgba(0,0,0,0.1); }
-        .project-card:hover .arrow { transform: translateX(8px); }
         
         @media (max-width: 992px) {
           .project-card-inner { grid-template-columns: 1fr !important; gap: 24px !important; }

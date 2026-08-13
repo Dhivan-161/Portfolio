@@ -14,9 +14,6 @@ import Footer from './components/Footer';
 import Cursor from './components/Cursor';
 import TransitionManager from './components/TransitionManager';
 
-// Pages
-import CaseStudy from './pages/CaseStudy';
-
 function MainLayout() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [transitionCallback, setTransitionCallback] = useState(null);
@@ -46,14 +43,13 @@ function MainLayout() {
             <Hero onSlashTransition={handleSlashTransition} />
             <About />
             <Skills />
-            <Projects onSlashTransition={handleSlashTransition} />
+            <Projects />
             <Experience />
             <Certifications />
             <Contact />
             <Footer />
           </main>
         } />
-        <Route path="/project/:id" element={<CaseStudy />} />
       </Routes>
     </>
   );
